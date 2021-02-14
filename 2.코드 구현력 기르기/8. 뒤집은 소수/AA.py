@@ -8,14 +8,17 @@ import itertools
 17984
 """
 
-sys.stdin = open("input.txt", "rt")
+# sys.stdin = open("input.txt", "rt")
 
 
 num = int(input())
 num_list = input().split()
 result = []
+
+
 def reverse(num):
     return int(num[::-1])
+
 
 def is_prime(num):
     if num == 1:
@@ -27,10 +30,12 @@ def is_prime(num):
     else:
         return True
 
+
 for i in num_list:
     if is_prime(reverse(i)):
         result.append(str(reverse(i)))
 
 print(" ".join(result))
+
 
 # print("#{} {}".format(test_case, result))

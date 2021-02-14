@@ -10,7 +10,7 @@ import itertools
 
 num = int(input())
 num_list = list(map(int, input().split()))
-avg = round(sum(num_list) / num)
+avg = int((sum(num_list) / num) + 0.5)
 num_list.append(avg)
 sorted_list = sorted(num_list)
 avg_index = sorted_list.index(avg)
