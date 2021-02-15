@@ -8,13 +8,13 @@ import itertools
 17984
 """
 
-sys.stdin = open("input.txt", "rt")
+# sys.stdin = open("input.txt", "rt")
 
 
 n = int(input())
 
 for test_case in range(1, n + 1):
-    word = input()
+    word = input().lower()
     if word == word[::-1]:
         print("#{} YES".format(test_case))
     else:
