@@ -18,7 +18,7 @@ from pprint import pprint
 
 """
 #
-sys.stdin = open("input.txt", "rt")
+# sys.stdin = open("input.txt", "rt")
 pan = []
 cnt = 0
 
