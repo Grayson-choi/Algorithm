@@ -8,17 +8,8 @@ import itertools
 17984
 """
 #
-sys.stdin = open("input.txt", "rt")
-#
-#
-# n = int(input())
-#
-# for test_case in range(1, n + 1):
-#     word = input()
-#     if word == word[::-1]:
-#         print("#{} YES".format(test_case))
-#     else:
-#         print("#{} NO".format(test_case))
+# sys.stdin = open("input.txt", "rt")
+
 nums = [x for x in range(1, 20 + 1)]
 
 for _ in range(10):
