@@ -11,8 +11,6 @@ from pprint import pprint
 105
 """
 
-import sys
-sys.stdin=open("input.txt", "r")
 def Count(len):
     cnt=0
     for x in Line:
@@ -37,5 +35,3 @@ while lt<=rt:
     else:
         rt=mid-1
 print(res)
-
-
