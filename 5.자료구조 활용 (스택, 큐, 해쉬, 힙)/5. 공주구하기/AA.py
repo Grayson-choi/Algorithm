@@ -3,11 +3,11 @@ import itertools
 from pprint import pprint
 
 """
-20 3
+(3+5)*2
 """
 
 """
-20
+35+2*
 """
 
 import sys
@@ -23,7 +23,5 @@ while li:
     li.pop(0)
     if len(li) == 1:
         print(li[0])
-
-
 
 
