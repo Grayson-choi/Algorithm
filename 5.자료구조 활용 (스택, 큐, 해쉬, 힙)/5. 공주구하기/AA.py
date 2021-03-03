@@ -11,7 +11,7 @@ from pprint import pprint
 """
 
 import sys
-sys.stdin=open("input.txt", "r")
+# sys.stdin=open("input.txt", "r")
 import collections
 n, K = map(int, input().split())
 li = [x for x in range(1, n + 1)]

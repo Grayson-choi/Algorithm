@@ -3,26 +3,31 @@ import itertools
 from pprint import pprint
 
 """
-20 3
+6 0
+60 60 90 60 60 60
 """
 
 """
-20
+5
 """
 
 import sys
 sys.stdin=open("input.txt", "r")
-import collections
-n, K = map(int, input().split())
-li = [x for x in range(1, n + 1)]
-q = []
-while li:
-    for j in range(K - 1):
-        element = li.pop(0)
-        li.append(element)
-    li.pop(0)
-    if len(li) == 1:
-        print(li[0])
+from collections import deque
+
+n, m = map(int, input().split())
+Q = [(pos, val) for pos, val in enumerate(list(map(int, input().split())))]
+Q = deque(Q)
+cnt = 0
+while True:
+    cur = Q.popleft()
+    if any(cur[1] < x[1] for x in Q):
+        Q.append(cur)
+    else:
+        cnt += 1
+        if cur[0] == m:
+            print(cnt)
+            break
 
 
 
