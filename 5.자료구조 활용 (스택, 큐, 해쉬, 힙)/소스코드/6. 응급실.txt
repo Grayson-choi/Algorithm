@@ -14,3 +14,4 @@ while True:
         if cur[0]==m:
             print(cnt)
             break
+
