@@ -5,7 +5,7 @@ import sys
 4 7 10 22 25
 """
 
-sys.stdin = open("input.txt", "r")
+# sys.stdin = open("input.txt", "r")
 
 def DFS(n, num):
     global ck_list
