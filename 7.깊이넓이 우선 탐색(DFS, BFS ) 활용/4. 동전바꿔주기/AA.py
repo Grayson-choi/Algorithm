@@ -9,7 +9,7 @@ import sys
 7 3
 """
 
-sys.stdin = open("input.txt", "r")
+# sys.stdin = open("input.txt", "r")
 
 def DFS(L, sum):
     global cnt
