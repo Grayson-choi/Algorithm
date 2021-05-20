@@ -1,33 +1,26 @@
 import sys
 sys.stdin = open('input.txt')
 
-def swim(idx, money):
-    global min_price
-    if idx >= 12:
-        if money < min_price:  # 최소 비용 비교
-            min_price = money
-        return
-    if plan[idx]:  # 운영 계획이 존재 할 때
-        for i in range(4):  # 비용을 기준으로 탐색하므로 비용의 개수인 4번만큼 반복
-            if i == 0:  # 1일권
-                swim(idx + 1, money + price[i] * plan[idx])
-            elif i == 1:  # 1달권
-                swim(idx + 1, money + price[i])
-            elif i == 2:  # 3개월권
-                swim(idx + 3, money + price[i])
-            else:  # 1년권
-                swim(idx + 12, money + price[i])
-    else:  # 운영계획이 존재 안한다면 idx를 1만큼 늘려서 다시 탐색
-        swim(idx + 1, money)
-
-
+# dp로 구현하였다.
 T = int(input())
-for t in range(T):
-    price = list(map(int, input().split()))
-    plan = list(map(int, input().split()))
-    min_price = 99999999
+for tc in range(1, T + 1):
+    # 각 티켓의 요금
+    tickets = list(map(int, input().split()))
+    # 월별 수영장 이용 계획
+    plans = list(map(int, input().split()))
+    # 3개월 권을 식에 표현하고 싶어 2월까지는 대입하였다.
+    dp = [0]*12
+    dp[0] = min(tickets[0] * plans[0], tickets[1])
+    dp[1] = dp[0] + min(tickets[0] * plans[1], tickets[1])
+    dp[2] = min(dp[1] + min(tickets[0] * plans[2], tickets[1]), tickets[2])
+    # 3개월권을 이용하는 것, 일일 이용권을 이용하는 것, 1개월 이용권을 이용하는 것 중 가장 효율이 높은 것을 저장한다.
+    for i in range(3, 12):
+        dp[i] = min(dp[i-3] + tickets[2], dp[i-1] + min(tickets[0] * plans[i], tickets[1]))
+    # 12월까지 모두 돌고나서 1년 이용권을 이용하는 것과 비교하여 결과값을 도출한다.
+    dp[-1] = min(dp[-1], tickets[3])
+    print('#{} {}'.format(tc, dp[-1]))
 
-    swim(0, 0)
-    print('#{} {}'.format(t + 1, min_price))
 
-# 11:06:38 실행이 완료되었습니다. 실행 시간 : 0.24374s
+# 11:08:03 실행이 완료되었습니다. 실행 시간 : 0.13278s
+# 58,940 kb 메모리
+# 162 ms 실행시간

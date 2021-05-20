@@ -74,3 +74,5 @@ for tc in range(1, 1 + T):
         num_sum += e[2]  # 남아있는 미생물들 더하기
 
     print('#{} {}'.format(tc, num_sum))
+    # 109,712 kb 메모리
+    # 906ms 실행시간

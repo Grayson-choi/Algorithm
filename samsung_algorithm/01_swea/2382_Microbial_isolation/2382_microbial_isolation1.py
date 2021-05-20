@@ -44,3 +44,5 @@ for test_case in range(1, 1 + T):
     print('#{} {}'.format(test_case, result))
 
 # 13:44:19 실행이 완료되었습니다. 실행 시간 : 0.18102s
+# 69,484 kb 메모리
+# 705 ms 실행시간
