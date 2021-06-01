@@ -14,7 +14,7 @@ import sys
 
 def DFS(n, sum):
     global result
-    if n == D + 1:
+    if n == D + 1:  # 종료일이 된다면
         if sum > result:
             result = sum
     else:
@@ -22,7 +22,7 @@ def DFS(n, sum):
             DFS(n + times[n], sum + profits[n])
         DFS(n + 1, sum)
 
-D = int(input())
+D = int(input()) # 날짜
 times = []
 profits = []
 

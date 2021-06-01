@@ -118,10 +118,11 @@ for tc in range(1, T + 1):
                 cnt += 1
     # pprint.pprint(board)
 
-    # 각 이동 거리에 대한 배열
+    # 이동 거리 저장
     distances = [[0 for j in range(cnt)] for i in range(cnt)]
     dis_dict = {}
-    # 섬과 연결하기
+
+    # 다리 만들기
     for row in range(m_row):
         for col in range(m_col):
             count = board[row][col]
