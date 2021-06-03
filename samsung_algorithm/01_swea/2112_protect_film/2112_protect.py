@@ -27,12 +27,13 @@ def check_flim(mylist):
             if len(count) >= k:
                 check[idx] = 1
 
+        if check[idx] == 0:
+            return False
 
         if sum(check) == m:
             return True
 
-        if check[idx] == 0:
-            return False
+
 
     return False
 

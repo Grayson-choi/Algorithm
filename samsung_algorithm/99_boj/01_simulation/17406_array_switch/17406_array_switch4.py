@@ -1,59 +1,80 @@
+import sys
+from collections import deque
+from itertools import permutations
+import copy
+
+def rotate(y, x, height, width):
+    global copy_arr
+    q = deque()
+
+    # 가로 줄 돌기
+    for i in range(x, x + width):
+        q.append(copy_arr[y][i])
+
+    # 오른쪽 돌기
+    for i in range(y + 1, y + height):
+        q.append(copy_arr[i][x + width - 1])
+        # print(i, x + width - 1)
+        # print("--")
 
 
-n, m, k = map(int, input().split())
-
-board = []
-operations = []
-
-
-def switch(r, c, s):
-    global board
-    start, end, center = (r - s, c - s), (r + s, c + s), (s, r)
-
-    for i in range(1, s + 1):
-        center_row, center_col = center[0], center[1]
-        print("c", center_row, center_col)
-        # start_row, start_col = start[0] - 1, start[1] - 1
-        # end_row, end_col = end[0] - 1, end[1] - 1
-
-
-        size = i * 2
-        temp = 0
-        start_row, start_col = center_row - i, center_col - i
-        end_row, end_col = center_row + i, center_col + i
-        print("s", start_row, start_col)
-        print("e", end_row, end_col)
-        # 상
-        print("상끝", start_col + size)
-        idx = 1
-        for i in range(start_col, start_col + size):
-            print(i)
-            board[start_row][start_col + 1] = board[start_row][i]
-            print(board)
-        # 오
-        # 하
-        # 좌
+    for i in range(x + width - 2, x, -1):
+        q.append(copy_arr[y + height - 1][i])
+        print(y + height - 1, i)
 
 
 
+    for i in range(y + height - 1, y, -1):
+        q.append(copy_arr[i][x])
+
+    q.rotate(1)  # 한칸 이동
+
+    for i in range(x, x + width):
+        copy_arr[y][i] = q.popleft()
+
+    for i in range(y + 1, y + height):
+        copy_arr[i][x + width - 1] = q.popleft()
+
+    for i in range(x + width - 2, x, -1):
+        copy_arr[y + height - 1][i] = q.popleft()
+
+    for i in range(y + height - 1, y, -1):
+        copy_arr[i][x] = q.popleft()
 
 
-
-
-
-
-
-for _ in range(n):
-    board.append(list(map(int, input().split())))
-
-for i in range(k):
-    operation = list(map(int, input().split()))
-    operations.append(operation)
-
-    r, c, s = operations[i]
-    switch(r, c, s)
+n, m, k = map(int, sys.stdin.readline().rstrip().split())
+arr = [list(map(int, sys.stdin.readline().rstrip().split())) for _ in range(n)]
+op_infos = [list(map(int, sys.stdin.readline().rstrip().split())) for _ in range(k)]
+INF = int(1e9)  # 무한대로 설정
+answer = INF
+# print(op_infos)
 
 
 
 
+op_orders = tuple(permutations(op_infos))
+# print(op_orders)
 
+for order in op_orders:
+    copy_arr = copy.deepcopy(arr)
+    for r, c, s in order:
+        left_top_y = r - s - 1
+        left_top_x = c - s - 1
+
+        height = 2 * s + 1
+        width = 2 * s + 1
+
+        while True:
+            if height <= 0 or width <= 0: break
+            rotate(left_top_y, left_top_x, height, width)
+            height -= 2
+            width -= 2
+            left_top_y += 1
+            left_top_x += 1
+
+    arr_value = INF
+    for i in range(n):
+        arr_value = min(arr_value, sum(copy_arr[i]))
+    answer = min(answer, arr_value)
+
+print(answer)
