@@ -1,7 +1,7 @@
 import sys
 import pprint
 import queue
-sys.stdin = open('input.txt', "r", encoding="utf-8")
+sys.stdin = open('test_input.txt', "r", encoding="utf-8")
 
 T = int(input())
 
