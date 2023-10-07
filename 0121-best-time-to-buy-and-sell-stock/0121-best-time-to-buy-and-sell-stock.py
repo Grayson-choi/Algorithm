@@ -10,4 +10,3 @@ class Solution:
                 max_profit = price - min_price # 최대 이익 업데이트
 
         return max_profit
-
